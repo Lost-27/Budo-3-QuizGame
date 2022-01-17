@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -7,34 +6,41 @@ using UnityEngine.UI;
 
 public class QuizManager : MonoBehaviour
 {
+    #region Variables
+
     public List<QuestionConfig> QuestionConfigs;
     public TextMeshProUGUI QuestionLabel;
+    public Image ImageLabel;
     public TextMeshProUGUI[] Options;
     public GameObject[] Buttons;
     public int CurrentQuestion;
-
-    private int _numberHiddenButtons = 2;
     public int NumCorrectAnswers { get; private set; }
     public int NumWrongAnswers { get; private set; }
-    
 
-    void Start()
+    private int _numberHiddenButtons = 2;
+
+    #endregion
+
+
+    #region Unity lifecycle
+
+    private void Start()
     {
+        NumCorrectAnswers = 0;
+        NumWrongAnswers = 0;
         RandomQuestion();
     }
 
-    IEnumerable AWDS()
-    {
-        yield return new WaitForSeconds(10);
-    }
+    #endregion
 
+
+    #region Public methods
     public void BtnPressed(int buttonKey)
     {
         if (QuestionConfigs[CurrentQuestion].Answers[buttonKey].IsCorrect)
         {
             NumCorrectAnswers++;
-            Debug.Log("Ответ правильный");
-            // GetComponent<Image>().color = Color.green;
+            Debug.Log("Ответ правильный " + NumCorrectAnswers);
             Options[buttonKey].color = Color.green;
             QuestionConfigs.RemoveAt(CurrentQuestion);
             RandomQuestion();
@@ -42,7 +48,7 @@ public class QuizManager : MonoBehaviour
         else
         {
             NumWrongAnswers++;
-            Debug.Log("Ответ НЕправильный");
+            Debug.Log("Ответ НЕправильный " + NumWrongAnswers);
             Options[buttonKey].color = Color.red;
             QuestionConfigs.RemoveAt(CurrentQuestion);
             RandomQuestion();
@@ -76,6 +82,11 @@ public class QuizManager : MonoBehaviour
         }
     }
 
+    #endregion
+
+
+    #region Private methods
+
     private void SetAnswers()
     {
         for (int i = 0; i < Options.Length; i++)
@@ -92,6 +103,7 @@ public class QuizManager : MonoBehaviour
         {
             CurrentQuestion = Random.Range(0, _totalQuestions);
             QuestionLabel.text = QuestionConfigs[CurrentQuestion].ContentQuestion;
+            ImageLabel.sprite = QuestionConfigs[CurrentQuestion].Image;
             SetAnswers();
         }
         else
@@ -99,4 +111,6 @@ public class QuizManager : MonoBehaviour
             SceneManager.LoadScene(2);
         }
     }
+
+    #endregion
 }

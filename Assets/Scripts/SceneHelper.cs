@@ -5,6 +5,8 @@ public class SceneHelper : MonoBehaviour
 {
     private static SceneHelper _instance;
 
+    #region Unity lifecycle
+
     private void Awake()
     {
         if (_instance == null)
@@ -18,16 +20,14 @@ public class SceneHelper : MonoBehaviour
         }
     }
 
+    #endregion
+
+    
     #region Public methods
 
     public void LoadScene(int index)
     {
         SceneManager.LoadScene(index);
-    }
-
-    public void ResetActiveScene()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void Quit()

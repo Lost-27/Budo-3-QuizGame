@@ -1,17 +1,31 @@
-using System;
 using UnityEngine;
 
 public class CorrectAndWrongAnswersData : MonoBehaviour
 {
+    #region Variables
+
+    public int CorrectAnswers; //{ get; private set; }
+    public int WrongAnswers;// { get; private set; }
+
     private static CorrectAndWrongAnswersData _instance;
     private QuizManager _quizManager;
 
-    public int CorrectAnswers { get; private set; }
-    public int WrongAnswers { get; private set; }
+    #endregion
+
+
+    #region Unity lifecycle
 
     private void Awake()
     {
-        DemoSingleton();
+        if (_instance == null)
+        {
+            _instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Start()
@@ -24,18 +38,6 @@ public class CorrectAndWrongAnswersData : MonoBehaviour
         CorrectAnswers = _quizManager.NumCorrectAnswers;
         WrongAnswers = _quizManager.NumWrongAnswers;
     }
-    
-    private void DemoSingleton()
-    {
-        if (_instance == null)
-        {
-            _instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-    
+
+    #endregion
 }

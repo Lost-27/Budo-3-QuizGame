@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f5fce4ded0b8d046aefe3d181dfae29, type: 3}
   m_Name: Question2
   m_EditorClassIdentifier: 
-  ContentQuestion: "\u0421\u043A\u043E\u043B\u044C\u043A\u043E \u0431\u0443\u0434\u0435\u0442
-    5+2?"
+  ContentQuestion: "\u041A\u0430\u043A \u0437\u043E\u0432\u0443\u0442 \u044D\u0442\u043E\u0433\u043E
+    \u0430\u043A\u0442\u0451\u0440\u0430?"
+  Image: {fileID: 21300000, guid: f099106dc152ebf4686f383cc072072e, type: 3}
   Answers:
-  - AnswerText: 43
+  - AnswerText: "\u0414\u0436\u0435\u043A\u0438 \u0427\u0430\u0439"
     IsCorrect: 0
-  - AnswerText: 54
+  - AnswerText: "\u0414\u0436\u0443\u043A\u0438 \u0427\u0443\u043D"
     IsCorrect: 0
-  - AnswerText: 43
+  - AnswerText: "\u0414\u0438\u043A\u0438\u0439 \u0427\u0435\u043B"
     IsCorrect: 0
-  - AnswerText: 7
+  - AnswerText: "\u0414\u0436\u0435\u043A\u0438 \u0427\u0430\u043D"
     IsCorrect: 1
