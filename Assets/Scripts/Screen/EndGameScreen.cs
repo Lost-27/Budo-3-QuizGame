@@ -13,7 +13,6 @@ public class EndGameScreen : MonoBehaviour
     public TextMeshProUGUI NumCorrectAnswersLabel;
     public TextMeshProUGUI NumWrongAnswersLabel;
 
-    private CorrectAndWrongAnswersData _correctAndWrongAnswers;
     private SceneHelper _sceneHelper;
 
     #endregion
@@ -26,11 +25,10 @@ public class EndGameScreen : MonoBehaviour
         RestartButton.onClick.AddListener(RestartButtonClicked);
         QuitButton.onClick.AddListener(QuitButtonClicked);
 
-        _correctAndWrongAnswers = FindObjectOfType<CorrectAndWrongAnswersData>();
         _sceneHelper = FindObjectOfType<SceneHelper>();
 
-        NumCorrectAnswersLabel.text = Convert.ToString(_correctAndWrongAnswers.CorrectAnswers);
-        NumWrongAnswersLabel.text = Convert.ToString(_correctAndWrongAnswers.WrongAnswers);
+        NumCorrectAnswersLabel.text = Convert.ToString(CorrectAndWrongAnswersData.Instance.CorrectAnswers);
+        NumWrongAnswersLabel.text = Convert.ToString(CorrectAndWrongAnswersData.Instance.WrongAnswers);
     }
 
     #endregion

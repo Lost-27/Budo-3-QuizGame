@@ -15,13 +15,13 @@ MonoBehaviour:
   ContentQuestion: "\u041A\u0430\u043A \u0437\u043E\u0432\u0443\u0442 \u0435\u0433\u0438\u043F\u0435\u0442\u0441\u043A\u043E\u0433\u043E
     \u0431\u043E\u0433\u0430 \u0438\u0437\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u043D\u043E\u0433\u043E
     \u043D\u0430 \u043A\u0430\u0440\u0442\u0438\u043D\u043A\u0435?"
-  Image: {fileID: 21300000, guid: bca4dd63743770241a5c6333c834ae24, type: 3}
+  ImageQuestion: {fileID: 21300000, guid: bca4dd63743770241a5c6333c834ae24, type: 3}
   Answers:
-  - AnswerText: "A\u043D\u0443\u0431\u0438\u0441"
+  - AnswerText: "\u0410\u043D\u0443\u0431\u0438\u0441"
     IsCorrect: 1
   - AnswerText: "\u0421\u0435\u0442"
     IsCorrect: 0
   - AnswerText: "\u0411\u0430\u0441\u0442\u0435\u0442"
     IsCorrect: 0
-  - AnswerText: "O\u0441\u0438\u0440\u0438\u0441"
+  - AnswerText: "\u041E\u0441\u0438\u0440\u0438\u0441"
     IsCorrect: 0

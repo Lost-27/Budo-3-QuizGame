@@ -5,12 +5,13 @@ public class CorrectAndWrongAnswersData : MonoBehaviour
     #region Variables
 
     public int CorrectAnswers; //{ get; private set; }
-    public int WrongAnswers;// { get; private set; }
+    public int WrongAnswers; // { get; private set; }
 
     private static CorrectAndWrongAnswersData _instance;
-    private QuizManager _quizManager;
 
     #endregion
+
+    public static CorrectAndWrongAnswersData Instance => _instance;
 
 
     #region Unity lifecycle
@@ -26,17 +27,6 @@ public class CorrectAndWrongAnswersData : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    private void Start()
-    {
-        _quizManager = FindObjectOfType<QuizManager>();
-    }
-
-    private void Update()
-    {
-        CorrectAnswers = _quizManager.NumCorrectAnswers;
-        WrongAnswers = _quizManager.NumWrongAnswers;
     }
 
     #endregion

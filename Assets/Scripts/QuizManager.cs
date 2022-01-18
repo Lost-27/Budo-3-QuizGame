@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -13,11 +14,18 @@ public class QuizManager : MonoBehaviour
     public Image ImageLabel;
     public TextMeshProUGUI[] Options;
     public GameObject[] Buttons;
-    public int CurrentQuestion;
+
+    private QuestionConfig _currentQuestionConfigs;
+    private int _numberHiddenButtons = 2;
+    private int _currentIndex;
+
+    #endregion
+
+
+    #region Properties
+
     public int NumCorrectAnswers { get; private set; }
     public int NumWrongAnswers { get; private set; }
-
-    private int _numberHiddenButtons = 2;
 
     #endregion
 
@@ -28,48 +36,48 @@ public class QuizManager : MonoBehaviour
     {
         NumCorrectAnswers = 0;
         NumWrongAnswers = 0;
-        RandomQuestion();
+
+        GetRandomQuestion();
     }
 
     #endregion
 
 
     #region Public methods
+
     public void BtnPressed(int buttonKey)
     {
-        if (QuestionConfigs[CurrentQuestion].Answers[buttonKey].IsCorrect)
+        if (_currentQuestionConfigs.Answers[buttonKey].IsCorrect)
         {
             NumCorrectAnswers++;
             Debug.Log("Ответ правильный " + NumCorrectAnswers);
             Options[buttonKey].color = Color.green;
-            QuestionConfigs.RemoveAt(CurrentQuestion);
-            RandomQuestion();
         }
         else
         {
             NumWrongAnswers++;
             Debug.Log("Ответ НЕправильный " + NumWrongAnswers);
             Options[buttonKey].color = Color.red;
-            QuestionConfigs.RemoveAt(CurrentQuestion);
-            RandomQuestion();
         }
+
+        QuestionConfigs.RemoveAt(_currentIndex);
+        GetRandomQuestion();
     }
 
     public void HideWrongButtons()
     {
         for (int i = 0; i < Buttons.Length; i++)
         {
-            if (_numberHiddenButtons > 0)
+            if (_numberHiddenButtons <= 0) 
+                continue;
+            if (_currentQuestionConfigs.Answers[i].IsCorrect)
             {
-                if (QuestionConfigs[CurrentQuestion].Answers[i].IsCorrect)
-                {
-                    continue;
-                }
-
-                Buttons[i].SetActive(false);
-
-                _numberHiddenButtons--;
+                continue;
             }
+
+            Buttons[i].SetActive(false);
+
+            _numberHiddenButtons--;
         }
     }
 
@@ -92,22 +100,25 @@ public class QuizManager : MonoBehaviour
         for (int i = 0; i < Options.Length; i++)
         {
             Options[i].color = Color.black;
-            Options[i].text = QuestionConfigs[CurrentQuestion].Answers[i].AnswerText;
+            Options[i].text = _currentQuestionConfigs.Answers[i].AnswerText;
         }
     }
 
-    private void RandomQuestion()
+    private void GetRandomQuestion()
     {
-        int _totalQuestions = QuestionConfigs.Count;
-        if (_totalQuestions > 0)
+        int totalQuestions = QuestionConfigs.Count;
+        if (totalQuestions > 0)
         {
-            CurrentQuestion = Random.Range(0, _totalQuestions);
-            QuestionLabel.text = QuestionConfigs[CurrentQuestion].ContentQuestion;
-            ImageLabel.sprite = QuestionConfigs[CurrentQuestion].Image;
+            _currentIndex = Random.Range(0, totalQuestions);
+            _currentQuestionConfigs = QuestionConfigs[_currentIndex];
+            QuestionLabel.text = _currentQuestionConfigs.ContentQuestion;
+            ImageLabel.sprite = _currentQuestionConfigs.ImageQuestion;
             SetAnswers();
         }
         else
         {
+            CorrectAndWrongAnswersData.Instance.CorrectAnswers = NumCorrectAnswers;
+            CorrectAndWrongAnswersData.Instance.WrongAnswers = NumWrongAnswers;
             SceneManager.LoadScene(2);
         }
     }

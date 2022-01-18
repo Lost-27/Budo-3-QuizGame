@@ -12,7 +12,7 @@ public class QuestionConfig : ScriptableObject
     public string ContentQuestion;
     
     [ShowAssetPreview()]
-    public Sprite Image;
+    public Sprite ImageQuestion;
     
     public AnswerData[] Answers;
 

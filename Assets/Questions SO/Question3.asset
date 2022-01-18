@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ContentQuestion: "\u041A\u0430\u043A \u043D\u0430\u0437\u044B\u0432\u0430\u0435\u0442\u0441\u044F
     \u043A\u0430\u0440\u0442\u0438\u043D\u0430?"
-  Image: {fileID: 21300000, guid: 332e887d2152cec4aa76dfd42cc1d11d, type: 3}
+  ImageQuestion: {fileID: 21300000, guid: 332e887d2152cec4aa76dfd42cc1d11d, type: 3}
   Answers:
   - AnswerText: "\xAB\u0421\u0432\u044F\u0442\u043E\u0435 \u0441\u0435\u043C\u0435\u0439\u0441\u0442\u0432\u043E\xBB"
     IsCorrect: 0
